@@ -4,13 +4,13 @@ export default function VisibilityToolbar() {
   return (
     <ToggleButtonGroup type="radio" name="visibility" defaultValue={"all"}>
       <ToggleButton id="1" value="all">
-        All
+        Svi
       </ToggleButton>
       <ToggleButton id="2" value="active">
-        Active
+        Aktivni
       </ToggleButton>
       <ToggleButton id="3" value="completed">
-        Completed
+        Dovršeni
       </ToggleButton>
     </ToggleButtonGroup>
   );
