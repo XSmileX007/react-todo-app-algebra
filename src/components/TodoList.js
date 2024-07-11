@@ -1,10 +1,24 @@
 import TodoItem from "./TodoItem";
+import PropTypes from "prop-types";
 
-export default function TodoList() {
+export default function TodoList({ todos, toggleTodo, removeTodo }) {
   return (
     <div>
-      <TodoItem></TodoItem>
-      <TodoItem></TodoItem>
+      {todos.map((todo) => {
+        return (
+          <TodoItem
+            todo={todo}
+            key={todo.id}
+            toggleTodo={toggleTodo}
+            removeTodo={removeTodo}
+          ></TodoItem>
+        );
+      })}
     </div>
   );
 }
+
+TodoList.propTypes = {
+  toggleTodo: PropTypes.func,
+  removeTodo: PropTypes.func,
+};

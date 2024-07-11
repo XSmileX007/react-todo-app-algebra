@@ -13,6 +13,7 @@ class App extends Component {
   };
 
   handleVisibilityChange = (visibility) => {
+    console.log("visibility: " + visibility);
     this.setState({ visibility });
   };
 
@@ -33,13 +34,58 @@ class App extends Component {
     localStorage.setItem("todos", JSON.stringify(this.state.todos));
   }
 
+  handleToggleTodo = (id) => {
+    const { todos } = this.state;
+    const todo = todos.find((item) => item.id === id);
+
+    todo.completed = !todo.completed;
+    this.setState(todos);
+  };
+
+  handleRemoveTodo = (id) => {
+    console.log("handleRemoveTodo + " + id);
+    const { todos } = this.state;
+    //console.log("count before: " + todos.length);
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    //console.log("count after: " + newTodos.length);
+
+    this.setState({ todos: newTodos });
+  };
+
+  getVisibleTodos = () => {
+    const { todos, visibility } = this.state;
+    if (visibility === "all") {
+      return todos;
+    }
+
+    if (visibility === "active") {
+      return todos.filter((todo) => !todo.completed);
+    }
+
+    if (visibility === "completed") {
+      return todos.filter((todo) => todo.completed);
+    }
+  };
+
   render() {
+    //const { todos } = this.state;
+
+    const visibleTodos = this.getVisibleTodos();
+
     return (
       <div className="App">
         <header className="header">Moji zadaci</header>
-        <VisibilityToolbar></VisibilityToolbar>
-        <AddTodoForm addTodo={this.handleAddTodo}></AddTodoForm>
-        <TodoList></TodoList>
+        <VisibilityToolbar
+          onVisibilityChange={this.handleVisibilityChange}
+        ></VisibilityToolbar>
+        <div className="todoContainer">
+          <AddTodoForm addTodo={this.handleAddTodo}></AddTodoForm>
+          <TodoList
+            todos={visibleTodos}
+            toggleTodo={this.handleToggleTodo}
+            removeTodo={this.handleRemoveTodo}
+          ></TodoList>
+        </div>
       </div>
     );
   }
