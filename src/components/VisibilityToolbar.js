@@ -1,8 +1,14 @@
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-export default function VisibilityToolbar() {
+export default function VisibilityToolbar({ onVisibilityChange }) {
   return (
-    <ToggleButtonGroup type="radio" name="visibility" defaultValue={"all"}>
+    <ToggleButtonGroup
+      type="radio"
+      name="visibility"
+      defaultValue={"all"}
+      onChange={onVisibilityChange}
+    >
       <ToggleButton id="1" value="all">
         Svi
       </ToggleButton>
@@ -15,3 +21,7 @@ export default function VisibilityToolbar() {
     </ToggleButtonGroup>
   );
 }
+
+VisibilityToolbar.propTypes = {
+  onVisibilityChange: PropTypes.func,
+};

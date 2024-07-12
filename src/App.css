@@ -12,3 +12,36 @@
   font-size: 62px;
   opacity: 0.5;
 }
+
+.todoContainer {
+  background-color: white;
+  width: 500px;
+  margin: 40px auto;
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px 1px rgba(94, 94, 94, 1);
+}
+
+.todo-item {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  line-height: 32px;
+}
+
+.todo-item_item {
+  flex: 1;
+  text-align: start;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.todo-item_delete-button {
+  cursor: pointer;
+  font-size: 27px;
+  margin-right: 10px;
+}
+
+.todo-item_completed {
+  text-decoration: line-through;
+}
