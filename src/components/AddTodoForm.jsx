@@ -47,7 +47,11 @@ export default class AddTodoForm extends Component {
             autoFocus
             ref={this.ref}
           />
-          <Button type="submit" onClick={this.handleAddTodoClick}>
+          <Button
+            type="submit"
+            onClick={this.handleAddTodoClick}
+            variant="outline-dark"
+          >
             Dodaj
           </Button>
         </InputGroup>

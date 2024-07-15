@@ -67,10 +67,50 @@ class App extends Component {
     }
   };
 
-  render() {
-    //const { todos } = this.state;
+  handleRemoveCompleted = () => {
+    const { todos } = this.state;
+    /* let todos = [
+    {id =1, text = "prvi zadatak", completed=false}
+    {id =2, text = "drugi zadatak", completed=true}
+     ];
+    */
 
+    // standardni dio javascript for petlja
+    // iteriramo po svakom objektu unutar array-a
+    // uzimamo samo one koji su completed = false
+    /*let newTodos = [];
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].completed === false) {
+        newTodos.push(todos[i]);
+      }
+    }*/
+
+    let newTodos = todos.filter((todo) => !todo.completed);
+
+    // novu filtriranu listu vracamo u state
+    this.setState({ todos: newTodos });
+  };
+
+  render() {
+    const { todos } = this.state;
     const visibleTodos = this.getVisibleTodos();
+
+    const hasCompleted = todos.filter((todo) => todo.completed).length > 0;
+
+    /*let hasCompleted = false;
+
+    todos.filter((todo) => todo.completed).length > 0
+      ? (hasCompleted = true)
+      : (hasCompleted = false);
+    */
+    /*
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].completed === true) {
+        hasCompleted = true;
+        break;
+      }
+    }
+    */
 
     return (
       <div className="App">
@@ -86,6 +126,12 @@ class App extends Component {
             removeTodo={this.handleRemoveTodo}
           ></TodoList>
         </div>
+
+        {hasCompleted && (
+          <span className="btn-clear-all" onClick={this.handleRemoveCompleted}>
+            Obriši dovršene
+          </span>
+        )}
       </div>
     );
   }
