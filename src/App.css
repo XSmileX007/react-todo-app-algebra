@@ -45,3 +45,11 @@
 .todo-item_completed {
   text-decoration: line-through;
 }
+
+.btn-clear-all {
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 150px;
+  cursor: pointer;
+  font-size: 12px;
+}
